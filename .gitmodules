@@ -1,0 +1,3 @@
+[submodule "zbar"]
+	path = zbar
+	url = https://github.com/karsn/zbar.git
