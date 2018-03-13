@@ -1,3 +1,6 @@
 [submodule "zbar"]
 	path = zbar
 	url = https://github.com/karsn/zbar.git
+[submodule "camera"]
+	path = camera
+	url = https://github.com/karsn/EDZN-SJDW-CAM.git
