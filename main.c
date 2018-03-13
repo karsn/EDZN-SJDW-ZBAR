@@ -92,7 +92,7 @@ Others:
 *******************************************************************************/
 int main (int argc, char **argv)
 {
-	int ls32v_Ret = 0;
+	//int ls32v_Ret = 0;
 	int ls32v_ShmID = -1;
 	int ls32v_SemID = -1;
 	TruImgFrame *lptrv_ImgFrame = NULL;
@@ -151,13 +151,11 @@ int main (int argc, char **argv)
 
     /* configure the reader */
     zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_ENABLE, 0);
-    zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_ISBN10, ZBAR_CFG_ENABLE, 1);
-    zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_ISBN13, ZBAR_CFG_ENABLE, 1);
-    zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_EAN13, ZBAR_CFG_ENABLE, 1);
-    //zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_X_DENSITY, 2);
-    //zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_Y_DENSITY, 2);
-    zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_X_DENSITY, 32);
-    zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_Y_DENSITY, 32);
+    zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_QRCODE, ZBAR_CFG_ENABLE, 1);
+    //zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_ISBN13, ZBAR_CFG_ENABLE, 1);
+    //zbar_image_scanner_set_config(lptrv_Scanner, ZBAR_EAN13, ZBAR_CFG_ENABLE, 1);
+    zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_X_DENSITY, 1);
+    zbar_image_scanner_set_config(lptrv_Scanner, 0, ZBAR_CFG_Y_DENSITY, 1);
     
     zbar_image_t *lptrv_Image = zbar_image_create();
     
@@ -203,9 +201,14 @@ int main (int argc, char **argv)
     		
     		continue;
     	}
-    	
-    	/* extract results */
     	printf("%s(): FrameCnt-%d..\r\n", argv[0], ls32v_FrameCnt);
+    	
+    	/* Extract Centers */
+    	zbar_point_int_t *lptrv_QRPoint = NULL;
+		int ls32v_NumCenters = zbar_image_get_center(lptrv_Image, &lptrv_QRPoint);
+
+    
+    	/* extract results */
 	    const zbar_symbol_t *symbol = zbar_image_first_symbol(lptrv_Image);
 	    for(; symbol; symbol = zbar_symbol_next(symbol)) 
 	    {
