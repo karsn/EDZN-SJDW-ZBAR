@@ -10,18 +10,18 @@ for infile in imgs:
     print("extname={}".format(e))
     
     if (e == ".bmp") or (e == ".jpeg") or (e == ".jpg") or (e == ".png"):
-	    outfile = f + "_5W.png"
+	    outfile = f + "_o.png"
 	    img=Image.open(infile)
 	    nWidth=img.size[0]
 	    nHeight=img.size[1]
-	    if nWidth > 2592:
-	    	nWidth = 2592
+	    if (nWidth%2) != 0:
+	    	nWidth += 1
 	    	
-	    if nHeight > 1944:
-	    	nHeight = 1944
+	    if (nHeight%2) != 0:
+	    	nHeight += 1
 	    	
-	    img_5w=Image.new(img.mode,(2592,1944),(255,255,255))
-	    img_5w.paste(img,(0,0,nWidth,nHeight))
+	    img_5w=Image.new(img.mode,(nWidth,nHeight),(255,255,255))
+	    img_5w.paste(img,(0,0,img.size[0],img.size[1]))
 	    img_5w.save(outfile)
 	    img_5w.close()
 	    img.close()
