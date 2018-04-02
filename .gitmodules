@@ -6,4 +6,4 @@
 	url = https://github.com/karsn/EDZN-SJDW-CAM.git
 [submodule "gplugin"]
 	path = gplugin
-	url = git://anongit.freedesktop.org/gstreamer/gst-template.git
+	url = https://github.com/karsn/EDZN-SJDW-GPLUGIN.git
