@@ -44,3 +44,4 @@ Module.symvers
 /qr_srv
 /test_video_shm
 /zbarimg
+/debug/*.png
